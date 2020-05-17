@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Leaflet Heatmap</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+	<!-- range slider stylesheets -->
+	<link rel="stylesheet" href="1.css"/>
+	<link rel="stylesheet" href="2.css"/>
+		
+	<!-- leaflet stylesheets -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+	
+	<!-- jquery -->
+	<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+	
+	<!-- jquery -->
+	<script src="coordCountyState.js"></script>
+	
+	<!-- leaflet javascript -->
+	<script src="leaflet-heat.js"></script>
+
+	
+</head>
+<body>
+<button onclick="openFile()" id="button">Load data</button>
+<button onclick="myFunction()">How to use</button>
+<!-- enable slider  button-->
+<input type="checkbox" id="perday" name="vehicle1" value="Bike">
+  <label for="perday"> Enable per day</label><br>
+<!-- slider -->
+<div class="slidecontainer">
+  <input type="range" min="0" max="100" value="0" class="slider" id="myRange">
+  <p>Day: <span id="demo"></span> -- <span id="demoday"></span></p>
+</div>
+<!-- endslider -->
+</br>
+<div id="mapid" style="width: 100%; height: 100vh;"></div>
+<script src="1.js" type="text/javascript"></script>
+
+
+
+</body>
+</html>
