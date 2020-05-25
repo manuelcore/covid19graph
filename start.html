@@ -10,7 +10,6 @@
 	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
 	<!-- range slider stylesheets -->
 	<link rel="stylesheet" href="1.css"/>
-	<link rel="stylesheet" href="2.css"/>
 		
 	<!-- leaflet stylesheets -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
@@ -25,18 +24,22 @@
 	
 	<!-- leaflet javascript -->
 	<script src="leaflet-heat.js"></script>
+	<script src="date.js"></script>
 
 	
 </head>
 <body>
-<button onclick="openFile()" id="button">Load data</button>
-<button onclick="myFunction()">How to use</button>
+<button onclick="loadExistingData()" id="button">Load test data</button>
+<button onclick="loadJSONData()" id="button">Load JSON data</button>
+<button onclick="helpFunctionJSON()" style="background: lightblue">>Help get JSON data</button>
+<button onclick="openCSVFile()" id="button">Load custom data</button>
+<button onclick="helpFunction()" style="background: lightblue">Help custom data format</button>
 <!-- enable slider  button-->
 <input type="checkbox" id="perday" name="vehicle1" value="Bike">
   <label for="perday"> Enable per day</label><br>
 <!-- slider -->
 <div class="slidecontainer">
-  <input type="range" min="0" max="100" value="0" class="slider" id="myRange">
+  <input type="range" min="0" max="100" value="0" class="slider" id="sliderRange">
   <p>Day: <span id="demo"></span> -- <span id="demoday"></span></p>
 </div>
 <!-- endslider -->
