@@ -1,6 +1,6 @@
 var dataHeatmap = [];//date, [[lat,lon],[lat,lon],...]
 var markerArray = [];
-var rezJSON2 = {}; //data from  https://datelazi.ro/
+var countyLayer = {};
 function loadJSONData(){
 	//open file
 	var input = document.createElement('input');
@@ -13,13 +13,10 @@ function loadJSONData(){
 		reader.readAsText(file); // read JSON as text
 		reader.onload = readerEvent => {
 			var content = readerEvent.target.result; 
-			testJSONParse2(JSON.parse(content));
+			paseJSONdata(JSON.parse(content));
 		}
-
 	}
-
 	input.click();
-
 }
 function openCSVFile() { //open csv file
 	var input = document.createElement('input');
@@ -39,7 +36,6 @@ function openCSVFile() { //open csv file
 
 	input.click();
 }
-
 function helpFunctionJSON(){
 	alert('1. To get new JSON data go to: https://datelazi.ro/ and press the "Descarca date" button\n' + 
 	'2. Load the resulted file using the "Load JSON data" button in this page');
@@ -48,18 +44,21 @@ function helpFunctionJSON(){
 
 function loadExistingData()
 {//load data from up to 25 May 2020
-testJSONParse2(JSON.parse(datele));
+paseJSONdata(JSON.parse(datele));
 }
 
-function testJSONParse2(data) {
+function paseJSONdata(data) {
+	var rezJSON = {}; //inport data from  https://datelazi.ro/
 	//find  historicalData
 	$.each(data, function (key, val) {
-		recursiveFunction(key, val)
+		rezJSON = recursiveFunction(key, val)
+		if(typeof rezJSON2!= 'undefined')
+			return false;
 	});
 	//use countyInfectionsNumbers data
 	resetRange();
 	dataHeatmap = [];//clear old values
-	$.each(rezJSON2, function (key, val) {
+	$.each(rezJSON, function (key, val) {
 		//console.log(key, val);//key=date; val=list
 
 		$.each(val, function (key2, val2) {
@@ -108,7 +107,9 @@ function testJSONParse2(data) {
 
 //iterate JSON
 function recursiveFunction(key, val) {
-	if (key == 'historicalData') { rezJSON2 = val; }
+	if (key == 'historicalData') { 
+	rezJSON2 = val; return val;
+	}
 	var value = val['key2'];
 	if (value instanceof Object) {
 		$.each(value, function (key, val) {
@@ -201,7 +202,6 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 	zoomOffset: -1
 }).addTo(mymap);
 
-
 var popup = L.popup();
 
 function onMapClick(e) {
@@ -244,5 +244,15 @@ $('#perday').on('change', function () {
 	}
 	else {//not checked
 		resetRange();
+	}
+});
+
+$('#showCounty').on('change', function () {
+	if ($(this).is(':checked')) {
+		//add Romanian Counties 
+		countyLayer = L.geoJSON(geojsonFeature).addTo(mymap);
+	}
+	else {//not checked
+	 mymap.removeLayer(countyLayer) ;
 	}
 });

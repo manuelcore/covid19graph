@@ -30,17 +30,19 @@
 </head>
 <body>
 <button onclick="loadExistingData()" id="button">Load test data</button>
-<button onclick="loadJSONData()" id="button">Load JSON data</button>
+<button onclick="loadJSONData()" id="button">Load JSON data per County</button>
 <button onclick="helpFunctionJSON()" style="background: lightblue">>Help get JSON data</button>
 <button onclick="openCSVFile()" id="button">Load custom data</button>
 <button onclick="helpFunction()" style="background: lightblue">Help custom data format</button>
 <!-- enable slider  button-->
-<input type="checkbox" id="perday" name="vehicle1" value="Bike">
-  <label for="perday"> Enable per day</label><br>
+<input type="checkbox" id="perday" name="Enable Per Day">
+  <label for="perday"> Enable per day</label>
+<input type="checkbox" id="showCounty" name="Counties visible">
+  <label for="showCounty"> Show Romanian Counties</label><br>
 <!-- slider -->
 <div class="slidecontainer">
   <input type="range" min="0" max="100" value="0" class="slider" id="sliderRange">
-  <p>Day: <span id="demo"></span> -- <span id="demoday"></span></p>
+  <span>Day: <span id="demo"></span> -- <span id="demoday"></span></span>
 </div>
 <!-- endslider -->
 </br>
